@@ -1,0 +1,211 @@
+{% load static %}
+
+<section id="skills">
+    <div class="skills-container" style="max-width: 1200px; margin: 0 auto;">
+        <!-- Your Technical Skills Header & Cards Code -->
+    </div>
+</section>
+<style>
+    .skills-page-wrapper {
+        width: 100%;
+        color: #FFFFFF;
+    }
+
+    /* Main Glassmorphism Card Container */
+    .skills-card-section {
+        background: rgba(17, 24, 39, 0.6);
+        backdrop-filter: blur(12px);
+        border: 1px solid rgba(0, 210, 255, 0.15);
+        border-radius: 20px;
+        padding: 40px 6%;
+        margin: 0 auto 40px auto;
+        max-width: 1100px;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    }
+
+    .skills-section-title {
+        font-family: 'Instrument Serif', serif;
+        font-size: 2.8rem;
+        font-weight: 400;
+        margin-bottom: 30px;
+        color: #FFFFFF;
+    }
+
+    .skills-section-title span {
+        color: var(--accent-blue, #00D2FF);
+    }
+
+    /* Top Grid Layout */
+    .skills-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 30px;
+        margin-bottom: 40px;
+    }
+
+    .skill-column {
+        border-left: 2px solid rgba(0, 210, 255, 0.3);
+        padding-left: 20px;
+    }
+
+    .skill-column h3 {
+        font-size: 1rem;
+        font-weight: 700;
+        margin-bottom: 14px;
+        color: var(--accent-blue, #00D2FF);
+        text-transform: uppercase;
+        letter-spacing: 0.8px;
+    }
+
+    .skill-list {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+    }
+
+    .skill-list li {
+        font-size: 0.95rem;
+        color: var(--text-muted, #CBD5E1);
+        margin-bottom: 10px;
+        font-weight: 500;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+    }
+
+    .skill-list li::before {
+        content: "▹";
+        color: var(--accent-blue, #00D2FF);
+    }
+
+    /* Core Stack Focus Cards */
+    .core-stack-title {
+        font-size: 0.9rem;
+        font-weight: 700;
+        color: var(--accent-blue, #00D2FF);
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        margin-bottom: 20px;
+    }
+
+    .core-stack-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+        gap: 18px;
+    }
+
+    .core-card {
+        background: rgba(10, 14, 26, 0.6);
+        border: 1px solid rgba(255, 255, 255, 0.08);
+        border-radius: 14px;
+        padding: 20px 15px;
+        text-align: center;
+        transition: all 0.3s ease;
+    }
+
+    .core-card:hover {
+        transform: translateY(-6px);
+        border-color: rgba(0, 210, 255, 0.4);
+        box-shadow: 0 8px 25px rgba(0, 210, 255, 0.15);
+    }
+
+    .core-card img {
+        width: 38px;
+        height: 38px;
+        margin-bottom: 10px;
+        object-fit: contain;
+    }
+
+    .core-card span {
+        display: block;
+        font-size: 0.9rem;
+        font-weight: 600;
+        color: #FFFFFF;
+    }
+
+    @media (max-width: 768px) {
+        .skills-grid {
+            grid-template-columns: 1fr;
+            gap: 25px;
+        }
+        .skills-card-section {
+            padding: 30px 5%;
+        }
+    }
+</style>
+
+<div class="skills-page-wrapper">
+
+    <!-- Technical Skills Main Card -->
+    <div class="skills-card-section" data-aos="fade-up" data-aos-duration="800">
+        <h2 class="skills-section-title">Technical <span>Skills</span></h2>
+
+        <!-- Top Categories -->
+        <div class="skills-grid">
+            <div class="skill-column" data-aos="fade-right" data-aos-delay="100">
+                <h3>Languages</h3>
+                <ul class="skill-list">
+                    <li>Python 3.x</li>
+                    <li>SQL</li>
+                    <li>HTML5 & CSS3</li>
+                    <li>C++ (Basics)</li>
+                </ul>
+            </div>
+
+            <div class="skill-column" data-aos="fade-up" data-aos-delay="200">
+                <h3>Frameworks & Libs</h3>
+                <ul class="skill-list">
+                    <li>Django</li>
+                    <li>SQLite3</li>
+                    <li>OpenCV</li>
+                    <li>Pandas</li>
+                    <li>Tkinter</li>
+                </ul>
+            </div>
+
+            <div class="skill-column" data-aos="fade-left" data-aos-delay="300">
+                <h3>Tools & Architecture</h3>
+                <ul class="skill-list">
+                    <li>Git & GitHub</li>
+                    <li>SQLite Database</li>
+                    <li>Model-View-Template (MVT) Pattern</li>
+                    <li>Fuzzy String Matching</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Core Stack Focus -->
+        <div class="core-stack-title" data-aos="fade-up" data-aos-delay="350">
+            Core Stack Focus
+        </div>
+
+        <div class="core-stack-grid">
+            <div class="core-card" data-aos="zoom-in" data-aos-delay="400">
+                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg" alt="Python">
+                <span>Python</span>
+            </div>
+            <div class="core-card" data-aos="zoom-in" data-aos-delay="450">
+                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/django/django-plain.svg" alt="Django" style="filter: invert(1);">
+                <span>Django</span>
+            </div>
+            <div class="core-card" data-aos="zoom-in" data-aos-delay="500">
+                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/pandas/pandas-original.svg" alt="Pandas">
+                <span>Pandas</span>
+            </div>
+            <div class="core-card" data-aos="zoom-in" data-aos-delay="550">
+                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/sqlite/sqlite-original.svg" alt="SQLite">
+                <span>SQLite</span>
+            </div>
+            <div class="core-card" data-aos="zoom-in" data-aos-delay="600">
+                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/opencv/opencv-original.svg" alt="OpenCV">
+                <span>OpenCV</span>
+            </div>
+            <div class="core-card" data-aos="zoom-in" data-aos-delay="650">
+                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg" alt="GitHub" style="filter: invert(1);">
+                <span>Git / GitHub</span>
+            </div>
+        </div>
+
+    </div>
+
+</div>

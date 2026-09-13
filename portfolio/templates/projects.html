@@ -1,0 +1,236 @@
+{% load static %}
+
+<style>
+    .projects-page-wrapper {
+        width: 100%;
+        color: #FFFFFF;
+    }
+
+    /* Glassmorphism Main Card Container */
+    .projects-card-section {
+        background: rgba(17, 24, 39, 0.6);
+        backdrop-filter: blur(12px);
+        border: 1px solid rgba(0, 210, 255, 0.15);
+        border-radius: 20px;
+        padding: 40px 6%;
+        margin: 0 auto 40px auto;
+        max-width: 1100px;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    }
+
+    .projects-section-title {
+        font-family: 'Instrument Serif', serif;
+        font-size: 2.8rem;
+        font-weight: 400;
+        margin-bottom: 25px;
+        color: #FFFFFF;
+        text-align: center;
+    }
+
+    .projects-section-title span {
+        color: var(--accent-blue, #00D2FF);
+    }
+
+    .sub-section-title {
+        font-family: 'Instrument Serif', serif;
+        font-size: 2.2rem;
+        font-weight: 400;
+        color: #FFFFFF;
+        text-align: center;
+        margin: 50px 0 25px 0;
+    }
+
+    /* Featured Work - 3 Column Grid */
+    .featured-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 22px;
+    }
+
+    /* Additional Work - 2 Column Grid */
+    .additional-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+        gap: 22px;
+        max-width: 800px;
+        margin: 0 auto;
+    }
+
+    /* Dark Project Glass Card */
+    .project-card {
+        background: rgba(10, 14, 26, 0.7);
+        border: 1px solid rgba(255, 255, 255, 0.08);
+        border-radius: 16px;
+        padding: 20px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        transition: all 0.3s cubic-bezier(0.25, 1, 0.5, 1);
+    }
+
+    .project-card:hover {
+        transform: translateY(-6px);
+        border-color: rgba(0, 210, 255, 0.4);
+        box-shadow: 0 10px 30px rgba(0, 210, 255, 0.15);
+    }
+
+    .thumbnail-box {
+        width: 100%;
+        height: 160px;
+        border-radius: 10px;
+        overflow: hidden;
+        margin-bottom: 16px;
+        background: rgba(255, 255, 255, 0.03);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border: 1px solid rgba(255, 255, 255, 0.05);
+    }
+
+    .thumbnail-box img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: transform 0.4s ease;
+    }
+
+    .project-card:hover .thumbnail-box img {
+        transform: scale(1.05);
+    }
+
+    .thumbnail-placeholder {
+        font-family: 'Instrument Serif', serif;
+        font-style: italic;
+        color: var(--text-muted, #94A3B8);
+        font-size: 0.95rem;
+    }
+
+    .project-tags {
+        font-size: 0.72rem;
+        font-weight: 700;
+        letter-spacing: 1.2px;
+        text-transform: uppercase;
+        color: var(--accent-blue, #00D2FF);
+        margin-bottom: 8px;
+        display: block;
+    }
+
+    .project-title {
+        font-family: 'Instrument Serif', serif;
+        font-size: 1.6rem;
+        font-weight: 400;
+        line-height: 1.2;
+        color: #FFFFFF;
+        margin-bottom: 10px;
+    }
+
+    .project-description {
+        font-size: 0.88rem;
+        line-height: 1.6;
+        color: var(--text-muted, #CBD5E1);
+        margin-bottom: 20px;
+    }
+
+    .btn-source {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        align-self: flex-start;
+        background: rgba(0, 210, 255, 0.1);
+        border: 1px solid rgba(0, 210, 255, 0.3);
+        color: var(--accent-blue, #00D2FF);
+        font-size: 0.82rem;
+        font-weight: 600;
+        padding: 8px 18px;
+        border-radius: 20px;
+        text-decoration: none;
+        transition: all 0.3s ease;
+    }
+
+    .btn-source:hover {
+        background: var(--accent-blue, #00D2FF);
+        color: #0A0E1A;
+        box-shadow: 0 0 15px rgba(0, 210, 255, 0.4);
+    }
+
+    .no-projects-msg {
+        text-align: center;
+        color: var(--text-muted, #94A3B8);
+        font-size: 1rem;
+        padding: 30px 0;
+        grid-column: 1 / -1;
+    }
+
+    @media (max-width: 850px) {
+        .projects-card-section {
+            padding: 30px 5%;
+        }
+        .featured-grid, .additional-grid {
+            grid-template-columns: 1fr;
+        }
+    }
+</style>
+
+<div class="projects-page-wrapper">
+    <div class="projects-card-section" data-aos="fade-up" data-aos-duration="800">
+
+        <!-- Featured Work Heading -->
+        <h1 class="projects-section-title">Featured <span>Work</span></h1>
+
+        <!-- Featured Grid -->
+        <div class="featured-grid">
+            {% for project in featured_projects %}
+            <div class="project-card" data-aos="zoom-in" data-aos-delay="150">
+                <div>
+                    <div class="thumbnail-box">
+                        {% if project.image %}
+                            <img src="{{ project.image.url }}" alt="{{ project.title }}">
+                        {% else %}
+                            <span class="thumbnail-placeholder">// Project Preview</span>
+                        {% endif %}
+                    </div>
+                    <span class="project-tags">{{ project.tech_stack }}</span>
+                    <h2 class="project-title">{{ project.title }}</h2>
+                    <p class="project-description">{{ project.description }}</p>
+                </div>
+                {% if project.github_url %}
+                    <a href="{{ project.github_url }}" target="_blank" class="btn-source">
+                        View Source Code &rarr;
+                    </a>
+                {% endif %}
+            </div>
+            {% empty %}
+                <p class="no-projects-msg">No featured projects found in database.</p>
+            {% endfor %}
+        </div>
+
+        <!-- Additional Work Section -->
+        {% if additional_projects %}
+        <h2 class="sub-section-title">Additional <span>Work</span></h2>
+        <div class="additional-grid">
+            {% for project in additional_projects %}
+            <div class="project-card" data-aos="zoom-in" data-aos-delay="200">
+                <div>
+                    <div class="thumbnail-box">
+                        {% if project.image %}
+                            <img src="{{ project.image.url }}" alt="{{ project.title }}">
+                        {% else %}
+                            <span class="thumbnail-placeholder">// Project Preview</span>
+                        {% endif %}
+                    </div>
+                    <span class="project-tags">{{ project.tech_stack }}</span>
+                    <h3 class="project-title">{{ project.title }}</h3>
+                    <p class="project-description">{{ project.description }}</p>
+                </div>
+                {% if project.github_url %}
+                    <a href="{{ project.github_url }}" target="_blank" class="btn-source">
+                        View Source Code &rarr;
+                    </a>
+                {% endif %}
+            </div>
+            {% endfor %}
+        </div>
+        {% endif %}
+
+    </div>
+</div>

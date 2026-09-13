@@ -1,0 +1,239 @@
+{% load static %}
+
+<style>
+    .contact-page-wrapper {
+        width: 100%;
+        color: #FFFFFF;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .contact-container {
+        width: 100%;
+        max-width: 750px;
+        margin: 0 auto;
+    }
+
+    /* Glassmorphism Main Card Container */
+    .contact-card-section {
+        background: rgba(17, 24, 39, 0.6);
+        backdrop-filter: blur(12px);
+        border: 1px solid rgba(0, 210, 255, 0.15);
+        border-radius: 20px;
+        padding: 40px 6%;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    }
+
+    .contact-section-title {
+        font-family: 'Instrument Serif', serif;
+        font-size: 2.8rem;
+        font-weight: 400;
+        margin-bottom: 25px;
+        color: #FFFFFF;
+        text-align: center;
+    }
+
+    .contact-section-title span {
+        color: var(--accent-blue, #00D2FF);
+    }
+
+    /* Direct Contact Information Box */
+    .contact-direct-info {
+        background: rgba(10, 14, 26, 0.5);
+        border: 1px solid rgba(255, 255, 255, 0.08);
+        border-radius: 14px;
+        padding: 22px 24px;
+        margin-bottom: 30px;
+    }
+
+    .contact-direct-info h3 {
+        font-size: 1.1rem;
+        margin-bottom: 14px;
+        color: var(--accent-blue, #00D2FF);
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+    }
+
+    .contact-info-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+        gap: 12px;
+    }
+
+    .contact-info-item {
+        font-size: 0.92rem;
+        color: var(--text-muted, #CBD5E1);
+    }
+
+    .contact-info-item strong {
+        color: #FFFFFF;
+    }
+
+    .contact-info-item a {
+        color: var(--accent-blue, #00D2FF);
+        text-decoration: none;
+        transition: color 0.2s ease;
+    }
+
+    .contact-info-item a:hover {
+        color: #FFFFFF;
+        text-decoration: underline;
+    }
+
+    /* Form Design */
+    .contact-form {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+    }
+
+    .form-group {
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+    }
+
+    .form-label {
+        font-size: 0.88rem;
+        font-weight: 600;
+        color: #FFFFFF;
+        letter-spacing: 0.5px;
+    }
+
+    /* Dark Modern Input Controls */
+    .form-control {
+        width: 100%;
+        background: rgba(10, 14, 26, 0.7);
+        border: 1px solid rgba(255, 255, 255, 0.12);
+        border-radius: 10px;
+        padding: 13px 16px;
+        font-size: 0.92rem;
+        color: #FFFFFF;
+        font-weight: 400;
+        outline: none;
+        transition: all 0.3s ease;
+    }
+
+    .form-control::placeholder {
+        color: var(--text-muted, #64748B);
+    }
+
+    .form-control:focus {
+        border-color: var(--accent-blue, #00D2FF);
+        box-shadow: 0 0 15px rgba(0, 210, 255, 0.25);
+        background: rgba(10, 14, 26, 0.9);
+    }
+
+    textarea.form-control {
+        resize: vertical;
+        min-height: 130px;
+        font-family: inherit;
+    }
+
+    /* Cyan Action Button */
+    .btn-submit {
+        background: rgba(0, 210, 255, 0.1);
+        border: 1px solid rgba(0, 210, 255, 0.4);
+        color: var(--accent-blue, #00D2FF);
+        font-size: 0.9rem;
+        font-weight: 700;
+        padding: 12px 30px;
+        border-radius: 25px;
+        cursor: pointer;
+        align-self: flex-start;
+        margin-top: 8px;
+        transition: all 0.3s ease;
+    }
+
+    .btn-submit:hover {
+        background: var(--accent-blue, #00D2FF);
+        color: #0A0E1A;
+        box-shadow: 0 0 20px rgba(0, 210, 255, 0.4);
+        transform: translateY(-2px);
+    }
+
+    /* Alert Success Banner */
+    .alert-success {
+        background: rgba(0, 210, 255, 0.15);
+        border: 1px solid var(--accent-blue, #00D2FF);
+        color: #FFFFFF;
+        padding: 12px 18px;
+        border-radius: 10px;
+        font-size: 0.88rem;
+        margin-bottom: 20px;
+    }
+
+    @media (max-width: 650px) {
+        .contact-card-section {
+            padding: 30px 5%;
+        }
+        .contact-info-grid {
+            grid-template-columns: 1fr;
+        }
+    }
+</style>
+
+<div class="contact-page-wrapper">
+    <div class="contact-container">
+
+        <div class="contact-card-section" data-aos="fade-up" data-aos-duration="800">
+            <h1 class="contact-section-title">Get In <span>Touch</span></h1>
+
+            {% if messages %}
+                {% for message in messages %}
+                    <div class="alert-success" data-aos="fade-down">
+                        {{ message }}
+                    </div>
+                {% endfor %}
+            {% endif %}
+
+            <!-- Direct Contact Box -->
+            <div class="contact-direct-info" data-aos="fade-up" data-aos-delay="100">
+                <h3>Direct Contact</h3>
+                <div class="contact-info-grid">
+                    <div class="contact-info-item">
+                        <strong>Email:</strong><br>
+                        <a href="mailto:asgharwajiha7@gmail.com">asgharwajiha7@gmail.com</a>
+                    </div>
+                    <div class="contact-info-item">
+                        <strong>LinkedIn:</strong><br>
+                        <a href="https://www.linkedin.com/in/wajiha-rubab/" target="_blank">linkedin.com/in/wajiha-rubab</a>
+                    </div>
+                    <div class="contact-info-item">
+                        <strong>GitHub:</strong><br>
+                        <a href="https://github.com/wajiharubab648-coder" target="_blank">github.com/wajiharubab648-coder</a>
+                    </div>
+                    <div class="contact-info-item">
+                        <strong>Location:</strong><br>
+                        <span>Bahawalpur, Punjab, Pakistan</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Interactive Contact Form -->
+            <form method="POST" action="{% url 'home' %}#contact" class="contact-form" data-aos="fade-up" data-aos-delay="200">
+                {% csrf_token %}
+
+                <div class="form-group">
+                    <label for="name" class="form-label">Your Name</label>
+                    <input type="text" id="name" name="name" class="form-control" placeholder="Enter your full name" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="email" class="form-label">Your Email</label>
+                    <input type="email" id="email" name="email" class="form-control" placeholder="Enter your email address" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="message" class="form-label">Message</label>
+                    <textarea id="message" name="message" class="form-control" placeholder="Write your message here..." required></textarea>
+                </div>
+
+                <button type="submit" class="btn-submit">Send Message &rarr;</button>
+            </form>
+        </div>
+
+    </div>
+</div>

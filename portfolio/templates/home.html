@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Wajiha Rubab | Python & Django Developer{% endblock %}
+
+{% block content %}
+
+    <!-- HERO SECTION -->
+    <section id="home">
+        {% include 'hero.html' %}
+    </section>
+
+    <!-- ABOUT SECTION -->
+    <section id="about" data-aos="fade-up">
+        {% include 'about.html' %}
+    </section>
+
+    <!-- SKILLS SECTION -->
+    <section id="skills" data-aos="fade-up">
+        {% include 'skills.html' %}
+    </section>
+
+    <!-- EDUCATION SECTION -->
+    <section id="education" data-aos="fade-up">
+        {% include 'education.html' %}
+    </section>
+
+    <!-- PROJECTS SECTION -->
+    <section id="projects" data-aos="fade-up">
+        {% include 'projects.html' %}
+    </section>
+
+    <!-- CONTACT SECTION -->
+    <section id="contact" data-aos="fade-up">
+        {% include 'contact.html' %}
+    </section>
+
+{% endblock %}

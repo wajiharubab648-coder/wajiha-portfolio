@@ -1,0 +1,224 @@
+{% load static %}
+
+<style>
+    #about {
+        width: 100%;
+        color: #FFFFFF;
+        padding-top: 10px !important;
+        padding-bottom: 20px !important;
+    }
+
+    /* Shared Glassmorphism Main Card Container Style */
+    .about-card-section {
+        background: rgba(17, 24, 39, 0.6);
+        backdrop-filter: blur(12px);
+        border: 1px solid rgba(0, 210, 255, 0.15);
+        border-radius: 20px;
+        padding: 35px 5%;
+        margin: 0 auto 25px auto !important;
+        max-width: 1100px;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    }
+
+    .about-section-title {
+        font-family: 'Instrument Serif', serif;
+        font-size: 2.6rem;
+        font-weight: 400;
+        margin-bottom: 20px;
+        color: #FFFFFF;
+    }
+
+    .about-section-title span {
+        color: var(--accent-blue, #00D2FF);
+    }
+
+    /* Top Section Grid */
+    .about-grid {
+        display: grid;
+        grid-template-columns: 220px 1fr;
+        gap: 30px;
+        align-items: start;
+    }
+
+    /* Focus Sidebar with Cyan Vertical Line */
+    .focus-sidebar {
+        border-right: 2px solid rgba(0, 210, 255, 0.3);
+        padding-right: 20px;
+    }
+
+    .focus-sidebar h3 {
+        font-size: 0.95rem;
+        font-weight: 700;
+        margin-bottom: 12px;
+        color: var(--accent-blue, #00D2FF);
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+    }
+
+    .focus-list {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+    }
+
+    .focus-list li {
+        font-size: 0.88rem;
+        color: var(--text-muted, #94A3B8);
+        margin-bottom: 8px;
+        font-weight: 500;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+    }
+
+    .focus-list li::before {
+        content: "▹";
+        color: var(--accent-blue, #00D2FF);
+    }
+
+    /* BSIT Badge Pill */
+    .badge-pill {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        background: rgba(0, 210, 255, 0.1);
+        border: 1px solid rgba(0, 210, 255, 0.3);
+        color: var(--accent-blue, #00D2FF);
+        padding: 5px 14px;
+        border-radius: 20px;
+        font-size: 0.82rem;
+        font-weight: 600;
+        margin-bottom: 14px;
+    }
+
+    .about-text p {
+        font-size: 0.95rem;
+        line-height: 1.65;
+        color: var(--text-muted, #CBD5E1);
+        margin-bottom: 14px;
+    }
+
+    /* Fixed 2x2 Grid Layout for "What I Do" */
+    .services-grid {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr); /* Exactly 2 cards per row */
+        gap: 20px;
+    }
+
+    .service-card {
+        background: rgba(10, 14, 26, 0.6);
+        border: 1px solid rgba(255, 255, 255, 0.08);
+        border-radius: 14px;
+        padding: 22px;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        transition: all 0.3s ease;
+    }
+
+    .service-card:hover {
+        transform: translateY(-5px);
+        border-color: rgba(0, 210, 255, 0.4);
+        box-shadow: 0 8px 25px rgba(0, 210, 255, 0.12);
+    }
+
+    .service-card h3 {
+        font-size: 1.05rem;
+        font-weight: 700;
+        color: #FFFFFF;
+        margin-bottom: 10px;
+    }
+
+    .service-card p {
+        font-size: 0.86rem;
+        line-height: 1.55;
+        color: var(--text-muted, #94A3B8);
+        margin: 0;
+    }
+
+    @media (max-width: 850px) {
+        .about-grid {
+            grid-template-columns: 1fr;
+            gap: 20px;
+        }
+        .focus-sidebar {
+            border-right: none;
+            border-bottom: 2px solid rgba(0, 210, 255, 0.3);
+            padding-right: 0;
+            padding-bottom: 15px;
+        }
+        .about-card-section {
+            padding: 25px 4%;
+        }
+        .services-grid {
+            grid-template-columns: 1fr; /* 1 column on smaller mobile screens */
+        }
+    }
+</style>
+
+<section id="about">
+
+    <!-- 1. Top Card Section: A Little About Me -->
+    <div class="about-card-section" data-aos="fade-up" data-aos-duration="800">
+        <h2 class="about-section-title">A Little <span>About Me</span></h2>
+
+        <div class="about-grid">
+            <aside class="focus-sidebar" data-aos="fade-right" data-aos-delay="100">
+                <h3>Focus Areas</h3>
+                <ul class="focus-list">
+                    <li>Python 3.x</li>
+                    <li>Django Backend</li>
+                    <li>Database Design</li>
+                    <li>System Logic</li>
+                    <li>Computer Vision</li>
+                </ul>
+            </aside>
+
+            <div class="about-text" data-aos="fade-left" data-aos-delay="200">
+                <div class="badge-pill">
+                    🎓 BSIT Student @ GSCWU
+                </div>
+
+                <p>
+                    I'm a BSIT student at The Government Sadiq College Women University, Bahawalpur, who learns by shipping — not just completing tutorials. Over the past several months, I've independently built projects spanning Django web applications, desktop software, computer-vision tools, and system-level automation.
+                </p>
+
+                <p>
+                    My core focus is Python and Django backend development — designing clean database models, structuring views and routes properly, and understanding why something breaks before fixing it. I believe that habit matters more early on than moving fast.
+                </p>
+
+                <p>
+                    I'm currently looking for a part-time or remote Software Engineering / Web Development role where I can apply this foundation on real problems.
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <!-- 2. Bottom Card Section: What I Do -->
+    <div class="about-card-section" data-aos="fade-up" data-aos-duration="800" data-aos-delay="150">
+        <h2 class="about-section-title">What <span>I Do</span></h2>
+
+        <div class="services-grid">
+            <div class="service-card" data-aos="zoom-in" data-aos-delay="200">
+                <h3>Backend Web Development</h3>
+                <p>Architecting web backends with Django, ORM mapping, template logic and Server-Side Routing.</p>
+            </div>
+
+            <div class="service-card" data-aos="zoom-in" data-aos-delay="300">
+                <h3>Database Design & Management</h3>
+                <p>Designing structured relational database schemas using SQLite3 with clean data constraints and indexing.</p>
+            </div>
+
+            <div class="service-card" data-aos="zoom-in" data-aos-delay="400">
+                <h3>Desktop Applications</h3>
+                <p>Developing GUI desktop tools integrated with database functions using Python Tkinter.</p>
+            </div>
+
+            <div class="service-card" data-aos="zoom-in" data-aos-delay="500">
+                <h3>Computer Vision & Automation</h3>
+                <p>Scripting automation utilities and computer vision processing pipelines using OpenCV and custom algorithms.</p>
+            </div>
+        </div>
+    </div>
+
+</section>
