@@ -2,21 +2,22 @@ from django.conf import settings
 from django.contrib import messages
 from django.core.mail import send_mail
 from django.shortcuts import render, redirect
-from .models import Profile, Project
+from .models import Profile, Project, Contact
 
 
 def home(request):
     profile = Profile.objects.first()
-
-    # Single page par render hone ke liye projects query yahan add kar dein
     featured_projects = Project.objects.filter(is_featured=True)
     additional_projects = Project.objects.filter(is_featured=False)
 
-    # Agar contact form handling bhi home page se hi ho rahi ho
     if request.method == 'POST':
         name = request.POST.get('name')
         email = request.POST.get('email')
         message = request.POST.get('message')
+
+        # Database mein save (backup ke liye)
+        if name and email and message:
+            Contact.objects.create(name=name, email=email, message=message)
 
         subject = f"Portfolio Message from {name}"
         full_message = f"Name: {name}\nEmail: {email}\n\nMessage:\n{message}"
@@ -31,7 +32,7 @@ def home(request):
             )
             messages.success(request, "Your message has been sent successfully!")
         except Exception as e:
-            messages.error(request, "Failed to send email. Please try again.")
+            messages.error(request, f"Failed to send email. Error: {str(e)}")
 
         return redirect('home')
 
@@ -40,11 +41,9 @@ def home(request):
         'featured_projects': featured_projects,
         'additional_projects': additional_projects,
     }
-
     return render(request, 'home.html', context)
 
 
-# Baaki views agar aapko direct page URLs ke liye chahiyein to unhein rakhein
 def about(request):
     profile = Profile.objects.first()
     return render(request, 'about.html', {'profile': profile})

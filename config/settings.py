@@ -120,18 +120,15 @@ STATIC_ROOT = BASE_DIR / 'staticfiles'
 # Email
 # https://docs.djangoproject.com/en/6.1/topics/email/#topic-email-configuration
 
-MAILERS = {
-    'default': {
-        'BACKEND': 'django.core.mail.backends.smtp.EmailBackend',
-        'OPTIONS': {
-            'host': 'smtp.gmail.com',
-            'port': 587,
-            'use_tls': True,
-            'username': 'asgharwajiha7@gmail.com',  # Secondary Gmail
-            'password': 'tcxa vrph vxjr wcfn',  # App Password
-        },
-    }
-}
+# Email Configuration
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+EMAIL_HOST_USER = 'asgharwajiha7@gmail.com'
+EMAIL_HOST_PASSWORD = 'tcxa vrph vxjr wcfn'
+DEFAULT_FROM_EMAIL = 'asgharwajiha7@gmail.com'
+
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 

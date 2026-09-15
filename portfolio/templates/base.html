@@ -25,18 +25,31 @@
             --text-muted: #9ca3af;
             --accent-blue: #00d2ff;
             --accent-glow: rgba(0, 210, 255, 0.4);
-            --nav-bg: rgba(10, 14, 26, 0.85);
-        }
-
-        /* Custom cursor logic */
-        *, *::before, *::after, html, body, a, button, input {
-            cursor: none !important;
+            --nav-bg: rgba(10, 14, 26, 0.95);
         }
 
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
+        }
+
+        /* System Cursor Hide karne ke liye */
+        body, a, button, input, textarea, select, [role="button"] {
+            cursor: none !important;
+        }
+
+        /* Custom Cursor / Blue circle styling safety */
+        .cursor, .custom-cursor, #cursor, .cursor-dot, .cursor-circle, .cursor-outline {
+            pointer-events: none !important;
+            z-index: 999999 !important;
+        }
+
+        /* Touch/Mobile devices par system cursor/touch restore rakhne ke liye */
+        @media (hover: none) and (pointer: coarse) {
+            body, a, button, input, textarea, select, [role="button"] {
+                cursor: auto !important;
+            }
         }
 
         html {
@@ -106,6 +119,16 @@
             color: var(--accent-blue);
         }
 
+        .mobile-toggle {
+            display: none;
+            background: none;
+            border: none;
+            color: var(--text-main);
+            font-size: 1.4rem;
+            cursor: none !important;
+            padding: 8px;
+        }
+
         .nav-links {
             display: flex;
             list-style: none;
@@ -122,11 +145,7 @@
             text-transform: uppercase;
             transition: color 0.3s ease;
             outline: none;
-        }
-
-        .nav-links a:focus, .nav-links a:active {
-            outline: none !important;
-            box-shadow: none !important;
+            cursor: none !important;
         }
 
         .nav-links a:hover {
@@ -148,51 +167,46 @@
             box-shadow: 0 0 20px var(--accent-glow) !important;
         }
 
-        /* Hero Social Pill Button */
-        .btn-pill-social {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            padding: 8px 18px;
-            border-radius: 30px;
-            background: rgba(0, 210, 255, 0.1);
-            border: 1px solid rgba(0, 210, 255, 0.3);
-            color: #f3f4f6;
-            text-decoration: none;
-            font-size: 0.85rem;
-            font-weight: 500;
-            transition: all 0.3s ease;
+        /* --- RESTORE VIEW MY WORK & LINKEDIN PILL BUTTONS --- */
+        #home a[href="#projects"], #home a.btn-primary, #home .btn-accent {
+            display: inline-flex !important;
+            align-items: center !important;
+            gap: 8px !important;
+            padding: 10px 24px !important;
+            border-radius: 30px !important;
+            background-color: var(--accent-blue) !important;
+            color: var(--bg-dark) !important;
+            font-weight: 600 !important;
+            text-decoration: none !important;
+            box-shadow: 0 0 15px var(--accent-glow) !important;
+            transition: all 0.3s ease !important;
         }
 
-        .btn-pill-social:hover {
-            border-color: #00d2ff;
-            color: #00d2ff;
-            background: rgba(0, 210, 255, 0.2);
+        #home a[href="#projects"]:hover, #home a.btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 0 25px var(--accent-blue) !important;
         }
 
-        /* Skills Section Spacing */
-        .core-stack-wrapper {
-            margin-top: 50px !important;
-            padding-top: 30px !important;
-            border-top: 1px solid rgba(255, 255, 255, 0.08);
+        #home a[href*="linkedin"], #home a.btn-secondary {
+            display: inline-flex !important;
+            align-items: center !important;
+            gap: 8px !important;
+            padding: 10px 22px !important;
+            border-radius: 30px !important;
+            background: rgba(0, 210, 255, 0.12) !important;
+            border: 1.5px solid var(--accent-blue) !important;
+            color: var(--text-main) !important;
+            font-weight: 600 !important;
+            text-decoration: none !important;
+            transition: all 0.3s ease !important;
         }
 
-        /* Project Cards Alignment */
-        .project-card {
-            display: flex !important;
-            flex-direction: column !important;
-            justify-content: space-between !important;
-            height: 100% !important;
+        #home a[href*="linkedin"]:hover, #home a.btn-secondary:hover {
+            background: rgba(0, 210, 255, 0.25) !important;
+            color: var(--accent-blue) !important;
+            transform: translateY(-2px);
         }
-
-        .project-card .project-description {
-            margin-bottom: 20px !important;
-            flex-grow: 1 !important;
-        }
-
-        .project-card a[class*="btn"], .project-card .btn-source-code {
-            margin-top: auto !important;
-        }
+        /* ---------------------------------------------------- */
 
         /* Container Main Layout */
         main {
@@ -201,53 +215,43 @@
             flex: 1 0 auto;
         }
 
-        /* Global Sections - Native Browser Offset Control */
+        /* Global Sections */
         section {
-            scroll-margin-top: 95px !important; /* Navbar height + safety gap */
+            scroll-margin-top: 95px !important;
             width: 100%;
             box-sizing: border-box;
             position: relative;
-            padding: 40px 6% 60px 6% !important;
+            padding: 40px 6% !important;
             display: block !important;
-            transition: filter 0.5s ease, opacity 0.5s ease !important;
-            filter: blur(8px);
-            opacity: 0.35;
-            will-change: filter, opacity;
-        }
-
-        /* Active Focus Section */
-        section.active-focus {
-            filter: blur(0px) !important;
+            filter: none !important;
             opacity: 1 !important;
         }
 
-        /* Home Section - Compact & Fully Fitted */
+        /* Home Section - Compact Top Gap Fixed */
         #home {
             scroll-margin-top: 0px !important;
-            height: calc(100vh - 80px) !important;
-            min-height: auto !important;
+            min-height: calc(100vh - 80px) !important;
             margin-top: 80px !important;
-            padding: 0 6% !important;
+            padding: 20px 6% 40px !important;
             display: flex !important;
-            flex-direction: row !important;
+            flex-wrap: wrap !important;
             justify-content: space-between !important;
             align-items: center !important;
+            gap: 30px !important;
             max-width: 1250px !important;
             margin-left: auto !important;
             margin-right: auto !important;
             box-sizing: border-box !important;
-            overflow: hidden !important;
         }
 
-        /* About Section Offset - Stops heading from hiding behind navbar */
-        #about {
-            scroll-margin-top: 150px !important;
+        #home > * {
+            flex: 1 1 45%;
         }
 
         /* Footer Styling */
         footer {
             border-top: 1px solid rgba(255, 255, 255, 0.08);
-            padding: 30px 6%;
+            padding: 25px 6%;
             text-align: center;
             background: var(--bg-dark);
             position: relative;
@@ -259,7 +263,7 @@
         .footer-copyright {
             font-size: 0.85rem;
             color: var(--text-muted);
-            margin-bottom: 12px;
+            margin-bottom: 10px;
         }
 
         .footer-links {
@@ -274,6 +278,7 @@
             text-decoration: none;
             font-size: 0.85rem;
             transition: opacity 0.3s ease;
+            cursor: none !important;
         }
 
         .footer-links a:hover {
@@ -284,9 +289,51 @@
             color: rgba(255, 255, 255, 0.2);
         }
 
-        /* AOS Animation Fix Override */
-        [data-aos] {
-            pointer-events: auto !important;
+        /* Mobile Responsive */
+        @media (max-width: 768px) {
+            header {
+                height: 65px;
+                padding: 0 4%;
+            }
+
+            .mobile-toggle {
+                display: block;
+            }
+
+            .nav-links {
+                position: fixed;
+                top: 65px;
+                left: 0;
+                width: 100%;
+                background: rgba(10, 14, 26, 0.98);
+                flex-direction: column;
+                align-items: center;
+                padding: 25px 0;
+                gap: 20px;
+                border-bottom: 1px solid rgba(0, 210, 255, 0.2);
+                backdrop-filter: blur(16px);
+                clip-path: polygon(0 0, 100% 0, 100% 0, 0 0);
+                transition: clip-path 0.4s ease-in-out;
+                pointer-events: none;
+            }
+
+            .nav-links.nav-open {
+                clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+                pointer-events: auto;
+            }
+
+            #home {
+                height: auto !important;
+                min-height: calc(100vh - 65px) !important;
+                margin-top: 65px !important;
+                flex-direction: column !important;
+                padding: 25px 4% !important;
+                text-align: center;
+            }
+
+            #home > * {
+                flex: 1 1 100% !important;
+            }
         }
     </style>
     {% block extra_css %}{% endblock %}
@@ -300,6 +347,9 @@
     <header>
         <nav class="navbar">
             <a href="{% url 'home' %}#home" class="logo">WR<span>.</span></a>
+            <button class="mobile-toggle" aria-label="Toggle Navigation">
+                <i class="fas fa-bars"></i>
+            </button>
             <ul class="nav-links">
                 <li><a href="{% url 'home' %}#home">HOME</a></li>
                 <li><a href="{% url 'home' %}#about">ABOUT</a></li>
@@ -307,7 +357,7 @@
                 <li><a href="{% url 'home' %}#education">EDUCATION</a></li>
                 <li><a href="{% url 'home' %}#projects">PROJECTS</a></li>
                 <li><a href="{% url 'home' %}#contact">CONTACT</a></li>
-                <li><a href="{% url 'resume' %}" class="btn-resume">View Resume ↗</a></li>
+                <li><a href="{% url 'resume' %}" class="btn-resume">Resume ↗</a></li>
             </ul>
         </nav>
     </header>
@@ -327,7 +377,7 @@
             <span class="footer-divider">|</span>
             <a href="https://www.linkedin.com/in/wajiha-rubab/" target="_blank" rel="noopener noreferrer"><i class="fab fa-linkedin"></i> LinkedIn</a>
             <span class="footer-divider">|</span>
-            <a href="mailto:asgharwajiha7@gmail.com"><i class="fas fa-envelope"></i> Email Me</a>
+            <a href="mailto:wajiharubab648@gmail.com"><i class="fas fa-envelope"></i> Email Me</a>
         </div>
     </footer>
 
@@ -338,7 +388,6 @@
     <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-            // Re-trigger animation cleanly without scroll glitch
             AOS.init({
                 duration: 800,
                 once: true,
@@ -347,36 +396,32 @@
                 disableMutationObserver: false
             });
 
-            // Anchor links AOS refresh
-            document.querySelectorAll('a[href*="#"]').forEach(anchor => {
-                anchor.addEventListener('click', function() {
-                    setTimeout(() => {
-                        AOS.refresh();
-                    }, 300);
-                });
-            });
-
-            // Scroll Focus & Blur Observer
-            const sections = document.querySelectorAll('section');
-            const observerOptions = {
-                root: null,
-                rootMargin: '-20% 0px -20% 0px',
-                threshold: 0.15
-            };
-
-            const focusObserver = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        entry.target.classList.add('active-focus');
+            const mobileToggle = document.querySelector('.mobile-toggle');
+            const navLinks = document.querySelector('.nav-links');
+            if (mobileToggle && navLinks) {
+                mobileToggle.addEventListener('click', () => {
+                    navLinks.classList.toggle('nav-open');
+                    const icon = mobileToggle.querySelector('i');
+                    if (navLinks.classList.contains('nav-open')) {
+                        icon.classList.remove('fa-bars');
+                        icon.classList.add('fa-xmark');
                     } else {
-                        entry.target.classList.remove('active-focus');
+                        icon.classList.remove('fa-xmark');
+                        icon.classList.add('fa-bars');
                     }
                 });
-            }, observerOptions);
 
-            sections.forEach(section => {
-                focusObserver.observe(section);
-            });
+                navLinks.querySelectorAll('a').forEach(link => {
+                    link.addEventListener('click', () => {
+                        navLinks.classList.remove('nav-open');
+                        const icon = mobileToggle.querySelector('i');
+                        if (icon) {
+                            icon.classList.remove('fa-xmark');
+                            icon.classList.add('fa-bars');
+                        }
+                    });
+                });
+            }
         });
     </script>
 </body>
